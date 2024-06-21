@@ -1,5 +1,6 @@
  :root {
     --size: 50px;
+    --boxes: 8;
     --speed: 0.5s;
     --color: #228B22;
  }
@@ -19,11 +20,6 @@
     padding-left: 30px;
   }
   
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
   
   .status {
     margin-bottom: 10px;
@@ -96,7 +92,18 @@
   
   .board {
     margin: 2% auto;
-    flex: 1 0 auto;
+  }
+
+  .board-wrapper {
+    display: inline-block;
+  }
+  .board-inner {
+    display: grid;
+    grid-template-columns: repeat(var(--boxes), var(--size));
+    grid-template-rows: repeat(var(--boxes), var(--size));
+    overflow-x: a;
+    width: 100%;
+    margin: 0 auto;
   }
   
   .board-data {
@@ -105,6 +112,7 @@
     display: flex;
     justify-content: space-evenly;
     width: 50%;
+    stroke-width: calc();
     margin: 2% auto;
   }
   
@@ -244,5 +252,87 @@
     }
     to {
       top: 45%;
+    }
+  }
+
+
+  @media (max-width: 600px) {
+    :root {
+      --size: 40px;
+    }
+  
+    .title {
+      font-size: 18px;
+    }
+  
+    .config-button {
+      left: 75%;
+    }
+  
+    .square {
+      font-size: calc(var(--size) - 15px);
+    }
+  
+    .config-menu {
+      width: 90%;
+      left: 5%;
+      padding: 10px;
+    }
+  
+    .colors-container {
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .color-choice {
+      width: 30px;
+      height: 30px;
+      margin: auto 5px;
+      margin-bottom: 10px;
+      
+    }
+  
+    .config-text {
+      font-size: 12px;
+    }
+  
+    .config-save {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  
+    .dropdown-button, .dropdown-menu {
+      width: 80%;
+      margin: 2% auto;
+    }
+  
+    .dropdown-option {
+      padding: 4px 10px;
+    }
+  
+    .win {
+      top: 35%;
+      left: 20%;
+      font-size: 24px;
+      padding: 10px 20px;
+    }
+  
+    .board-data {
+      width: 90%;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .refresh {
+      width: 10%;
+    }
+
+    .config-img {
+      width: 30px;
+      height: 23px;
+    }
+    .game-board {
+      width: 100%;
+      padding: 0 10px;
     }
   }

@@ -322,15 +322,9 @@ class Board extends React.Component {
     render() {
         const rows = [];
         for (let i = 0; i < this.props.box; i++) {
-            const cols = [];
             for (let j = 0; j < this.props.box; j++) {
-                cols.push(this.renderSquare(j, i));
+                rows.push(this.renderSquare(j, i));
             }
-            rows.push(
-                <div key={i} className="board-row">
-                    {cols}
-                </div>
-            );
         }
 
         const pause = !this.state.firstClick || this.state.gameEnd;
@@ -347,7 +341,14 @@ class Board extends React.Component {
                 <div className='m-fs'>Mines: {this.state.mines} | Flags: {this.state.flags}</div>
                 <img src={refresh} alt='refresh' className='refresh' onClick={this.resetBoard}/>
             </div>
-            <div class = "board">{rows} </div>{status}
+            <div className="board">
+                <div className='board-wrapper'>
+                    <div className='board-inner'>
+                    {rows} 
+                    </div>
+                </div>
+                
+            </div>
         </div>
         );
     }
@@ -390,6 +391,7 @@ class Game extends React.Component {
                 
             }
             this.setState({ size: size, box: box, mines: mines });
+            document.documentElement.style.setProperty('--boxes', box);
             document.documentElement.style.setProperty('--size', ssize);
         }
         document.documentElement.style.setProperty('--color', color);
