@@ -92,17 +92,17 @@
   
   .board {
     margin: 2% auto;
+    display: grid;
   }
 
   .board-wrapper {
-    display: inline-block;
+    overflow: auto;
   }
   .board-inner {
     display: grid;
     grid-template-columns: repeat(var(--boxes), var(--size));
     grid-template-rows: repeat(var(--boxes), var(--size));
-    overflow-x: a;
-    width: 100%;
+    width: max-content;
     margin: 0 auto;
   }
   
@@ -112,7 +112,6 @@
     display: flex;
     justify-content: space-evenly;
     width: 50%;
-    stroke-width: calc();
     margin: 2% auto;
   }
   
@@ -324,7 +323,8 @@
     }
   
     .refresh {
-      width: 10%;
+      width: 7%;
+      margin-top: 10px;
     }
 
     .config-img {
