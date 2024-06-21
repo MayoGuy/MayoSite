@@ -5,6 +5,7 @@ import flag from './flag.svg'
 import bomb from './bomb.svg'
 import refresh from './refresh.svg'
 import config from './hamburger.svg'
+import {Helmet} from 'react-helmet'
 import { Timer, Configurations} from './helpers';
 
 
@@ -404,6 +405,10 @@ class Game extends React.Component {
     render() {
         return (
             <div className="game">
+                <Helmet>
+                    <title>Minesweeper</title>
+                    <link rel="icon" href="./bomb.svg"></link>
+                </Helmet>
                 <button className='config-button' onClick={() => this.setState({ open: true })}>
                     <img src={config} alt='config' className='config-img'></img>
                     </button>
