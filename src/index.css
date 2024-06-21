@@ -96,7 +96,8 @@
   }
 
   .board-wrapper {
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   .board-inner {
     display: grid;
