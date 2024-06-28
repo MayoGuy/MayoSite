@@ -1,10 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './index.css';
-import flag from './flag.svg'
-import bomb from './bomb.svg'
-import refresh from './refresh.svg'
-import config from './hamburger.svg'
 import {Helmet} from 'react-helmet'
 import { Timer, Configurations} from './helpers';
 
@@ -17,9 +12,9 @@ function Square(props) {
     if (sq.value === 0) {
         val = ''
     }
-    let img = sq.flag ? <img src={flag}></img> : null;
+    let img = sq.flag ? <img src='/img/flag.svg'></img> : null;
     if (sq.open && sq.value === 'X') {
-        img = <img src={bomb}></img>;
+        img = <img src='/img/bomb.svg'></img>;
         val = ''
     }
 
@@ -339,7 +334,7 @@ class Board extends React.Component {
             <div className='board-data'>
                 <Timer pause={pause} reset={reset}/>
                 <div className='m-fs'>Mines: {this.state.mines} | Flags: {this.state.flags}</div>
-                <img src={refresh} alt='refresh' className='refresh' onClick={this.resetBoard}/>
+                <img src='/img/refresh.svg' alt='refresh' className='refresh' onClick={this.resetBoard}/>
             </div>
             <div className="board">
                 <div className='board-wrapper'>
@@ -347,7 +342,6 @@ class Board extends React.Component {
                     {rows} 
                     </div>
                 </div>
-                
             </div>
         </div>
         );
@@ -412,7 +406,7 @@ class Game extends React.Component {
                     <link rel="icon" href="./bomb.svg"></link>
                 </Helmet>
                 <button className='config-button' onClick={() => this.setState({ open: true })}>
-                    <img src={config} alt='config' className='config-img'></img>
+                    <img src='/img/hamburger.svg' alt='config' className='config-img'></img>
                     </button>
                 {this.state.open ? <Configurations onSave={this.onSave} sliderColor={this.state.color} opened={this.state.open} onClosed={this.onClosed} dcolor={this.state.color} dspeed={this.state.speed} dsize={this.state.size}/> : null}
                 <h2 className='title'>MINESWEEPER</h2>

@@ -1,339 +1,661 @@
- :root {
-    --size: 50px;
-    --boxes: 8;
-    --speed: 0.5s;
-    --color: #228B22;
- }
- 
- body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-    background-color: black;
+:root {
+  --size: 50px;
+  --boxes: 8;
+  --speed: 0.5s;
+  --color: #228B22;
+}
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+  background-color: black;
+}
+
+.title {
+  color: white;
+  text-align: center;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  color: white;
+  background-color: black;
+  float: left;
+  border: 1px solid;
+  border-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent 50%) 1;
+  font-size: calc(var(--size) - 20px);
+  line-height: var(--size);
+  height: var(--size);
+  padding: 0;
+  text-align: center;
+  width: var(--size);
+  position: relative;
+}
+
+.config-img {
+  width: 60px;
+  height: 40px;
+}
+
+.config-button {
+  position: absolute;
+  top: 5%;
+  background: black;
+  left: 85%;
+}
+
+.block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.top-part {
+  background-color: var(--color);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: 1;
+}
+
+.square img {
+  scale: 65%;
+  position: relative;
+  z-index: 2;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: #ddd;
+}
+
+.game {
+  display: grid;
+  justify-content: center;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.board {
+  margin: 2% auto;
+  display: grid;
+}
+
+.board-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.board-inner {
+  display: grid;
+  grid-template-columns: repeat(var(--boxes), var(--size));
+  grid-template-rows: repeat(var(--boxes), var(--size));
+  width: max-content;
+  margin: 0 auto;
+}
+
+.board-data {
+  flex: 1 0 auto;
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: 2% auto;
+}
+
+.refresh {
+  cursor: pointer;
+  filter: invert(98%) sepia(53%) saturate(0%) hue-rotate(105deg) brightness(107%) contrast(100%);
+  width: 5%;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes disappear {
+  from {
+    transform: scale(1);
   }
-  
+  to {
+    transform: scale(0);
+  }
+}
+
+.top-part.disappear {
+  animation: disappear var(--speed) ease-in-out;
+}
+
+.top-part.disappeared {
+  display: none;
+}
+
+.shake {
+  animation: shake var(--speed) ease-in-out;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-5px, 5px);
+  }
+  50% {
+    transform: translate(5px, -5px);
+  }
+  75% {
+    transform: translate(-5px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.config-menu {
+  color: #fff;
+  top: 25%;
+  left: 33%;
+  text-align: center;
+  position: relative;
+  width: 30%;
+  background-color: black; /* Optional: to make the menu more distinct */
+  border-radius: 10px; /* Optional: to make the menu look better */
+  padding: 20px; /* Optional: to add some padding inside the menu */
+}
+
+.colors-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.color-choice {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.color-choice:hover {
+  opacity: 0.8;
+}
+
+.config-text {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.size-container {
+  margin-bottom: 20px;
+}
+
+.config-save {
+  background-color: #87CEEB;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.dropdown-button, .dropdown-menu {
+  cursor: pointer;
+  padding: 2px 5px;
+  margin: 1% auto;
+  width: 50%;
+  border: 1px solid white;
+}
+
+.dropdown-menu {
+  background-color: rgb(63, 63, 63);
+}
+.dropdown-option {
+  padding: 2px 5px;
+  margin: 4px auto;
+}
+
+.win {
+  color: white;
+  position: absolute;
+  text-align: center;
+  top: 43%;
+  background: rgba(20, 20, 20, 0.697);
+  font-size: 33px;
+  padding: 5px 30px;
+  left: 40%;
+  border-radius: 5px;
+  z-index: 3;
+  animation: slide-down 0.5s ease-in-out;
+}
+
+@keyframes slide-down {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 45%;
+  }
+}
+
+
+@media (max-width: 600px) {
+  :root {
+    --size: 40px;
+  }
+
   .title {
-    color: white;
-    text-align: center;
+    font-size: 18px;
   }
-  
-  ol, ul {
-    padding-left: 30px;
-  }
-  
-  
-  .status {
-    margin-bottom: 10px;
-  }
-  
-  .square {
-    color: white;
-    background-color: black;
-    float: left;
-    border: 1px solid;
-    border-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, transparent 50%) 1;
-    font-size: calc(var(--size) - 20px);
-    line-height: var(--size);
-    height: var(--size);
-    padding: 0;
-    text-align: center;
-    width: var(--size);
-    position: relative;
-  }
-  
-  .config-img {
-    width: 60px;
-    height: 40px;
-  }
-  
+
   .config-button {
-    position: absolute;
-    top: 5%;
-    background: black;
-    left: 85%;
+    left: 75%;
   }
-  
-  .block {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+
+  .square {
+    font-size: calc(var(--size) - 15px);
   }
-  
-  .top-part {
-    background-color: var(--color);
-    width: 100%;
-    height: 100%;
-    left: 0;
-    z-index: 1;
+
+  .config-menu {
+    width: 90%;
+    left: 5%;
+    padding: 10px;
   }
-  
-  .square img {
-    scale: 65%;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .square:focus {
-    outline: none;
-  }
-  
-  .kbd-navigation .square:focus {
-    background: #ddd;
-  }
-  
-  .game {
-    display: grid;
+
+  .colors-container {
+    align-items: center;
     justify-content: center;
   }
-  
-  .game-info {
-    margin-left: 20px;
-  }
-  
-  .board {
-    margin: 2% auto;
-    display: grid;
-  }
 
-  .board-wrapper {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-  .board-inner {
-    display: grid;
-    grid-template-columns: repeat(var(--boxes), var(--size));
-    grid-template-rows: repeat(var(--boxes), var(--size));
-    width: max-content;
-    margin: 0 auto;
-  }
-  
-  .board-data {
-    flex: 1 0 auto;
-    color: white;
-    display: flex;
-    justify-content: space-evenly;
-    width: 50%;
-    margin: 2% auto;
-  }
-  
-  .refresh {
-    cursor: pointer;
-    filter: invert(98%) sepia(53%) saturate(0%) hue-rotate(105deg) brightness(107%) contrast(100%);
-    width: 5%;
-  }
-  
-  .game-board {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  @keyframes disappear {
-    from {
-      transform: scale(1);
-    }
-    to {
-      transform: scale(0);
-    }
-  }
-  
-  .top-part.disappear {
-    animation: disappear var(--speed) ease-in-out;
-  }
-  
-  .top-part.disappeared {
-    display: none;
-  }
-  
-  .shake {
-    animation: shake var(--speed) ease-in-out;
-  }
-  
-  @keyframes shake {
-    0% {
-      transform: translate(0, 0);
-    }
-    25% {
-      transform: translate(-5px, 5px);
-    }
-    50% {
-      transform: translate(5px, -5px);
-    }
-    75% {
-      transform: translate(-5px, -5px);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
-  }
-  
-  .config-menu {
-    color: #fff;
-    top: 25%;
-    left: 33%;
-    text-align: center;
-    position: relative;
-    width: 30%;
-    background-color: black; /* Optional: to make the menu more distinct */
-    border-radius: 10px; /* Optional: to make the menu look better */
-    padding: 20px; /* Optional: to add some padding inside the menu */
-  }
-
-  
-
- .colors-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
   .color-choice {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid black;
-    cursor: pointer;
-  }
-  
-  .color-choice:hover {
-    opacity: 0.8;
-  }
-  
-  .config-text {
-    color: white;
+    width: 30px;
+    height: 30px;
+    margin: auto 5px;
     margin-bottom: 10px;
+    
   }
-  
-  .size-container {
-    margin-bottom: 20px;
+
+  .config-text {
+    font-size: 12px;
   }
-  
+
   .config-save {
-    background-color: #87CEEB;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
+    font-size: 14px;
+    padding: 8px 16px;
   }
 
   .dropdown-button, .dropdown-menu {
-    cursor: pointer;
-    padding: 2px 5px;
-    margin: 1% auto;
-    width: 50%;
-    border: 1px solid white;
+    width: 80%;
+    margin: 2% auto;
   }
 
-  .dropdown-menu {
-    background-color: rgb(63, 63, 63);
-  }
   .dropdown-option {
-    padding: 2px 5px;
-    margin: 4px auto;
+    padding: 4px 10px;
   }
 
   .win {
-    color: white;
+    top: 35%;
+    left: 20%;
+    font-size: 24px;
+    padding: 10px 20px;
+  }
+
+  .board-data {
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .refresh {
+    width: 7%;
+    margin-top: 10px;
+  }
+
+  .config-img {
+    width: 30px;
+    height: 23px;
+  }
+  .game-board {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+.typer::after {
+  content: "";
+  width: 5px;
+  height: 25px;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  display: inline-block;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  color: white;
+  position: relative;
+  top: 20px;
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+  flex-wrap: wrap;
+  min-width: fit-content;
+}
+
+.navbar-right a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  flex: 1;
+  padding: 20px 25px;
+  min-width: fit-content; /* Ensure each link has a minimum width */
+  box-sizing: border-box; /* Ensure padding is included in the element's total width */
+  text-align: center;
+}
+
+.navbar-right a:hover, .btn:hover {
+  background-color: rgb(32, 32, 32);
+}
+
+.logo {
+  padding: 0 10px;
+  margin-left: 20px;
+  font-size: 30px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.content {
+  text-align: center;
+  color: white;
+}
+
+.headings {
+  margin-top: 100px;
+  height: 200px;
+}
+
+.headings p {
+  opacity: 0.8;
+}
+
+.skill-icon {
+  width: 72px;
+  height: 72px;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.content-break {
+  background-image: linear-gradient(to right, #00000000, rgba(255, 255, 255, 0.715), #00000000);
+  height: 1px;
+  margin: auto;
+  width: 70%;
+  margin-top: 50px;
+}
+
+.expertise-container {
+  margin-top: 50px;
+  height: 200px;
+}
+
+.skill-name {
+  display: none;
+  opacity: 0.5;
+}
+
+.skill:hover > .skill-icon, .skill:hover > .skill-name,
+.skill:active > .skill-icon, .skill:active > .skill-name {
+  cursor: pointer;
+  width: 96px;
+  height: 96px;
+  display: block;
+  margin-bottom: 0px;
+}
+
+.skill {
+  margin: 15px;
+}
+
+.skill:hover {
+  margin: 0;
+}
+
+.project-container {
+  margin-top: 50px;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.project {
+  width: 300px;
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.project-text {
+  text-align: left;
+}
+
+.project img {
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
+}
+
+.project-title {
+  font-weight: bold;
+}
+
+.project-description {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 950px) { 
+  .expertise-container {
+    height: 300px;
+  }
+}
+
+.project:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.btn {
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: relative;
+  top: 20px;
+  display: inline-flex;
+  align-items: flex-end;
+  font-size: 16px;
+}
+
+.btn img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  filter: invert(1);
+}
+
+.hamburger, .mobile-menu { 
+  display: none;
+}
+
+.hamburger {
+  padding: 20px 25px;
+  position: relative;
+  z-index: 3;
+}
+
+.mobile-menu {
+  right: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s linear;
+}
+
+.mobile-menu.active {
+  display: flex;
+  flex-direction: column;
+  transform: translateX(0%);
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+.mobile-menu {
+  height: 100vh;
+  background-color: black;
+  position: absolute;
+}
+
+@media screen and (max-width: 760px) {
+  .navbar-right {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
     position: absolute;
-    text-align: center;
-    top: 43%;
-    background: rgba(20, 20, 20, 0.697);
-    font-size: 33px;
-    padding: 5px 30px;
-    left: 40%;
-    border-radius: 5px;
     z-index: 3;
-    animation: slide-down 0.5s ease-in-out;
   }
 
-  @keyframes slide-down {
-    from {
-      top: -100%;
-    }
-    to {
-      top: 45%;
-    }
+  .mobile-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 20px 25px;
+    font-size: 20px;
   }
 
-
-  @media (max-width: 600px) {
-    :root {
-      --size: 40px;
-    }
-  
-    .title {
-      font-size: 18px;
-    }
-  
-    .config-button {
-      left: 75%;
-    }
-  
-    .square {
-      font-size: calc(var(--size) - 15px);
-    }
-  
-    .config-menu {
-      width: 90%;
-      left: 5%;
-      padding: 10px;
-    }
-  
-    .colors-container {
-      align-items: center;
-      justify-content: center;
-    }
-  
-    .color-choice {
-      width: 30px;
-      height: 30px;
-      margin: auto 5px;
-      margin-bottom: 10px;
-      
-    }
-  
-    .config-text {
-      font-size: 12px;
-    }
-  
-    .config-save {
-      font-size: 14px;
-      padding: 8px 16px;
-    }
-  
-    .dropdown-button, .dropdown-menu {
-      width: 80%;
-      margin: 2% auto;
-    }
-  
-    .dropdown-option {
-      padding: 4px 10px;
-    }
-  
-    .win {
-      top: 35%;
-      left: 20%;
-      font-size: 24px;
-      padding: 10px 20px;
-    }
-  
-    .board-data {
-      width: 90%;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .refresh {
-      width: 7%;
-      margin-top: 10px;
-    }
-
-    .config-img {
-      width: 30px;
-      height: 23px;
-    }
-    .game-board {
-      width: 100%;
-      padding: 0 10px;
-    }
+  .mobile-menu a:hover {
+    background-color: rgb(32, 32, 32);
   }
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+
+.message form {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  width: 350px;
+}
+
+.contain-btns {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+.contain-btns .btn {
+  top: 0;
+  margin-top: 10px;
+}
+
+.message input, .message-input{
+  width: 250px;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.message label {
+  padding: 5px;
+}
+
+.one-form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.message-input {
+  height: 100px;
+  resize: vertical;
+}
+
+.message .btn {
+  align-self: self-end;
+  top: 0;
+  width: 35%;
+  border: none;
+}
+
+.footer {
+  background-color: black;
+  text-align: center;
+  opacity: 0.5;
+  color: white;
+  padding: 10px;
+}
+
+.footer a {
+  color: white;
+}

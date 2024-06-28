@@ -2,16 +2,7 @@ import ReactDOM from 'react-dom/client';
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Game from './minesweeper';
-
-class Home extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1 style={{color: 'white'}}>Yo</h1>
-            </div>
-        );
-    }
-}
+import Home from './home';
 
 export default function App() {
     return (

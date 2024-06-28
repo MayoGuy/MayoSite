@@ -105,5 +105,44 @@ function Timer({ reset, pause }) {
     );
 }
 
+function Typer({texts, delay}) {
+    const [textIndex, setTextIndex] = useState(0);
+    const [text, setText] = useState('')
+    const [index, setIndex] = useState(0);
+    const [sum, setSum] = useState(1);
+    
 
-export {DropdownMenu, Configurations, Timer}
+    useEffect(() => {
+        let timeout;
+        if (index <= texts[textIndex].length) {
+            if (index===0) {
+                timeout = setTimeout(() => {
+                    setSum(1);
+                    setIndex(1);
+                    setTextIndex(prevtext=> prevtext===texts.length-1 ? 0 : prevtext+1);
+                    
+                }, 1000)
+                
+            }
+            timeout = setTimeout(() => {
+                setText(texts[textIndex].substring(0, index));
+                setIndex(prevIndex => prevIndex + sum);
+            }, 100);
+        } else if (index > texts[textIndex].length) {
+            timeout = setTimeout(() => {
+                setSum(-1);
+                setIndex(prevIndex => prevIndex-1);
+            }, 1000);
+            
+        }
+
+        return () => clearTimeout(timeout);
+    }, [index, textIndex, text, sum, texts])
+
+
+    return (
+        <span className='typer' style={{color:'white'}}>{text}</span>
+    )
+}
+
+export {DropdownMenu, Configurations, Timer, Typer}
