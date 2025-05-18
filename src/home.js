@@ -101,10 +101,6 @@ export default function Home() {
                             <div className="skill-name">C language</div>
                         </div>
                         <div className="skill">
-                            <img className="skill-icon" src="/img/C++.svg"/>
-                            <div className="skill-name">C++ language</div>
-                        </div>
-                        <div className="skill">
                             <img className="skill-icon" src="/img/flask.svg"/>
                             <div className="skill-name">Flask backend</div>
                         </div>
