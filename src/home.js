@@ -78,7 +78,7 @@ export default function Home() {
             <div className="content">
                 <div className="headings">
                     <h1>Hey there, I'm Harris!</h1>
-                    <h1>I'm a <Typer texts={['Full Stack Developer', 'Software Devolper', 'Discord Bot Developer', 'Mobile App Developer', 'Data Scientist', 'Graphics designer']}/></h1>
+                    <h1>I'm a <Typer texts={['Full Stack Developer', 'Software Devolper', 'Discord Bot Developer', 'Data Scientist', 'Microcontroller Developer', ]}/></h1>
                     <p>I'm a software developer based in Pakistan. I will help you build your next project that your users will love.</p>
                     <a className="btn" href="#"><img src="/img/github.svg"/>Github</a> 
                 </div>
